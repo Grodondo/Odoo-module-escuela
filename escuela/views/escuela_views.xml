@@ -1,0 +1,100 @@
+<odoo>
+    <!-- Vista de Estudiantes -->
+    <record id="view_form_estudiante" model="ir.ui.view">
+        <field name="name">Estudiante Form</field>
+        <field name="model">escuela.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Estudiante">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="apellidos"/>
+                        <field name="edad"/>
+                        <field name="grupo_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_estudiante" model="ir.ui.view">
+        <field name="name">Estudiante Tree</field>
+        <field name="model">escuela.estudiante</field>
+        <field name="arch" type="xml">
+            <tree string="Estudiantes">
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="edad"/>
+                <field name="grupo_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Estudiantes -->
+    <record id="action_estudiante" model="ir.actions.act_window">
+        <field name="name">Estudiantes</field>
+        <field name="res_model">escuela.estudiante</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_estudiante"/>
+    </record>
+
+    <!-- Vistas para Asignaturas -->
+    <record id="view_form_asignatura" model="ir.ui.view">
+        <field name="name">Asignatura Form</field>
+        <field name="model">escuela.asignatura</field>
+        <field name="arch" type="xml">
+            <form string="Asignatura">
+                <sheet>
+                    <group>
+                        <field name="codigo"/>
+                        <field name="nombre"/>
+                        <field name="horas"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Asignaturas -->
+    <record id="action_asignatura" model="ir.actions.act_window">
+        <field name="name">Asignaturas</field>
+        <field name="res_model">escuela.asignatura</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_form_asignatura"/>
+    </record>
+
+    <!-- Vistas para Grupos -->
+    <record id="view_form_grupo" model="ir.ui.view">
+        <field name="name">Grupo Form</field>
+        <field name="model">escuela.grupo</field>
+        <field name="arch" type="xml">
+            <form string="Grupo">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="modulo_profesional"/>
+                        <field name="curso"/>
+                        <field name="estudiantes_ids"/>
+                        <field name="asignaturas_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Grupos -->
+    <record id="action_grupo" model="ir.actions.act_window">
+        <field name="name">Grupos</field>
+        <field name="res_model">escuela.grupo</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_form_grupo"/>
+    </record>
+
+    <!-- Root menu -->
+    <menuitem id="menu_escuela_root" name="Escuela" sequence="10"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_estudiantes" name="Estudiantes" parent="menu_escuela_root" action="action_estudiante"/>
+    <menuitem id="menu_asignaturas" name="Asignaturas" parent="menu_escuela_root" action="action_asignatura"/>
+    <menuitem id="menu_grupos" name="Grupos" parent="menu_escuela_root" action="action_grupo"/>
+</odoo>
